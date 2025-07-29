@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='login.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+
+    <!--fim do header-->
+        <main class="register-container">
+            <div class="register-content">
+                {%set message = get_flashed_messages() %}
+                <h1>Realizar login</h1>
+                <p class="welcome-text">Realize o login para acessar o sistema</p>
+                
+                <div class="divider"></div>
+    <!--inicio do form-->
+        <!--tornaar required todos os campos após finalização-->
+                <form action="" method="POST" class="register-form">
+
+                    <div class="input-group">
+                        <!--campo de CPF-->     
+                            <label for="nome">Digite seu Nome</label>  
+                            <input type="text" id="nome" name="nome" maxlength="35" placeholder="Nome Completo" required>
+                    </div>
+                    
+                    <div class="input-group">
+            <!--campo de email--->  
+                        <label for="crm">Digite seu CRM</label> 
+                        <input type="text" id="crm" name="crm" maxlength="45" placeholder="xxxxxxxxxx" required>
+                            {% if message %}
+                                <p class="flash-erro">{{ message[0] }}</p>
+                            {% endif %}
+                    </div>
+                
+                    <div class="input-group">
+            <!--campo senha-->
+                        <label for="password">Digite sua senha</label>
+                        <input type="password" id="senha" name="senha" placeholder="Mínimo 8 caracteres" maxlength="20" minlength="8" required>
+                            {% if message %}
+                                <p class="flash-erro">{{ message[0] }}</p>
+                            {% endif %}
+                    </div>
+                    
+            <!--botao pora envio de formulario-->                   
+                    <input type="submit" value="Entrar"  class="continue-btn">
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
