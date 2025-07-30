@@ -49,15 +49,22 @@ def login():
             flash('crm ou senha incorretos.')
             return redirect(url_for('login'))
             
-@app.route('/admin')
+@app.route('/admin', methods=['GET', 'POST'])
 @login_required
 def admin():
     if current_user.nome != 'dev.admin':
         flash('Você não tem permissão para acessar esta página.', 'error')
         return redirect(url_for('index'))
+    
+#   if request.method == 'GET': 
+# (adicionar as condiçoes para as requisições GET e POST) 
+#   if request.method == 'POST':
+        
     else:
         usuarios_lista = db.session.query(User).all()
         return render_template('adm.html', usuario_consulta=usuarios_lista)
+       
+        
 
 @app.route('/pagina_principal')
 @login_required
