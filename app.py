@@ -16,20 +16,20 @@ def load_user(id):
     usuario_logado = db.session.query(User).filter_by(id=id).first()
     return usuario_logado
 
-@app.route('/criar_conta', methods=['GET', 'POST'])
-def criar_conta():
-    if request.method == 'GET':
-        return render_template('criar.html')
-    
-    elif request.method == 'POST':
-        nome = request.form['nome']
-        crm = request.form['crm']
-        senha = request.form['senha']
-        novo_user = User(nome=nome, crm=crm, password=senha)
-        db.session.add(novo_user)
-        db.session.commit()
-        login_user(novo_user)
-    return redirect(url_for('login'))
+#@app.route('/criar_conta', methods=['GET', 'POST'])
+#def criar_conta():
+#    if request.method == 'GET':
+#        return render_template('criar.html')
+#    
+#    elif request.method == 'POST':
+#        nome = request.form['nome']
+#        crm = request.form['crm']
+#        senha = request.form['senha']
+#        novo_user = User(nome=nome, crm=crm, password=senha)
+#        db.session.add(novo_user)
+#        db.session.commit()
+#        login_user(novo_user)
+#    return redirect(url_for('login'))
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -55,20 +55,27 @@ def admin():
     if current_user.nome != 'dev.admin':
         flash('Você não tem permissão para acessar esta página.', 'error')
         return redirect(url_for('index'))
-    
-#   if request.method == 'GET': 
-# (adicionar as condiçoes para as requisições GET e POST) 
-#   if request.method == 'POST':
-        
-    else:
+            
+    elif request.method == 'GET': 
         usuarios_lista = db.session.query(User).all()
         return render_template('adm.html', usuario_consulta=usuarios_lista)
+    
+# (adicionar as condiçoes para as requisições GET e POST) 
+    elif request.method == 'POST':
+         nome_usuario = request.form['nome']
+         crm_usuario = request.form['crm']
+         senha_usuario = request.form['senha']
+         novo_user = User(nome=nome_usuario, crm=crm_usuario, password=senha_usuario)
+         db.session.add(novo_user)
+         db.session.commit()
+    return redirect(url_for('admin'))
        
         
 
 @app.route('/pagina_principal')
 @login_required
 def index():
+    load_user(current_user.nome)
     return render_template('index.html')
 
 
