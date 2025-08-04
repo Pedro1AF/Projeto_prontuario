@@ -1,0 +1,242 @@
+/* Paleta light */
+:root[modo-light-dark="light"] {
+    --bg-color: #bebebe ;
+    --text-color: #222;
+    --form-bg: #fff;
+    --input-bg: #fefefe;
+    --table-header: #007bff;
+    --table-bg: #ffffff;
+    --table-row-alt: #f0f4fa;
+    --border-color: #ccd6eb;
+    --button-bg: #007bff;
+    --button-text: #fff;
+}
+
+/* Paleta dark */
+:root[modo-light-dark="dark"] {
+    --bg-color: #121212;
+    --text-color: #f1f1f1;
+    --form-bg: #1e1e1e;
+    --input-bg: #2c2c2c;
+    --table-header: #0d6efd;
+    --table-bg: #1a1a1a;
+    --table-row-alt: #2a2a2a;
+    --border-color: #444;
+    --button-bg: #0d6efd;
+    --button-text: #fff;
+}
+
+\ {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Definindo cores para os modos */
+html[modo-light-dark="light"] body {
+    background-color: var(--bg-color); /* azul bem claro */
+    color: #1c1c1c;
+}
+
+html[modo-light-dark="dark"] body {
+    background-color: var(--bg-color); /* azul escuro */
+    color: #ffffff;
+}
+
+/* Reset básico */
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: var(--form-bg);
+    padding: 15px 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .selec {
+    padding: 6px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+.navbar input[type="search"] {
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.navbar .btn-outline-success {
+    border-color: var(--table-header);
+    color: var(--table-header);
+}
+
+.navbar .btn-outline-success:hover {
+    background-color: var(--table-header);
+    color: white;
+}
+
+/* SAUDAÇÃO */
+.ola {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 24px;
+}
+
+/* FORMULÁRIO */
+.envio {
+    background-color: var(--form-bg);
+    padding: 25px 30px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 30px auto;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.envio .label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.campos,
+.envio textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 14px;
+}
+
+.form-control{
+    color: var(--text-color);
+}
+.checkbox-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.envio button[type="submit"] {
+    padding: 10px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.envio button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* TÍTULO */
+.titulo {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* TABELA */
+.content {
+    width: 95%;
+    max-width: 900px;
+    margin: 0 auto 60px auto;
+    overflow-x: auto;
+}
+
+.content table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--table-bg);
+    color: var(--text-color);
+}
+
+.content tr {
+    border-bottom: 1px solid var(--border-color);
+}
+
+.content th {
+    background-color: var(--table-header);
+    color: white;
+    text-align: left;
+    padding: 10px;
+}
+
+.content td {
+    padding: 10px;
+}
+
+.content tr:nth-child(even) {
+    background-color: var(--table-row-alt);
+}
+
+.content a {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.content a:hover {
+    text-decoration: underline;
+}
+
+.sem-pacientes{
+    text-align: center;
+    color: var(--text-color);
+    font-size: 18px;
+    margin-top: 20px;
+    font-family: italic;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .envio {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .content {
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    .navbar form {
+        width: 100%;
+    }
+
+    .navbar form input {
+        width: calc(100% - 100px);
+    }
+
+    .navbar form button {
+        width: 90px;
+    }
+}
