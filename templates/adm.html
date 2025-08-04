@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'admin.css')}}">
+    <title>Gestão</title>
 </head>
 <body>
-    <h1>Adicionar usúarios</h1>
-    <!--- area dos inputs para adicionar os novos usarios-->
+
+    <h1>Gestão usuarios</h1>
+
     <form action="" method="POST">
         <div class="input-container">
             <label for="nome">NOME</label>
@@ -16,9 +18,10 @@
             <label for="crm">CRM</label>
             <input type="text" name="crm" id="crm" maxlength="10" minlength="10" required>
 
-            <label for="senha">senha</label>
-            <input type="text" name="senha" id="senha" required>
-            <input type="submit" value="Cadastrar"  class="continue-btn" onclick="alerta()">
+            <label for="senha">SENHA</label>
+            <input type="text" name="senha" id="senha" minlength="8" maxlength="30" required>
+
+            <input type="submit" value="Cadastrar" class="continue-btn" onclick="alerta()">
         </div>
     </form>
 
@@ -26,37 +29,46 @@
         <tr>
             <th>ID</th>
             <th>NOME</th>
-            <th>CRM</th>
+            <th>SENHA</th>
+            <th>SENHA</th>
             <th>AÇÕES</th>
         </tr>
-        {% for User in usuario_consulta %}
-        <tr><td>{{User.id}}</td> <td>{{User.nome}}</td> <td>{{User.crm}}</td> <td><a href="/delete/{{User.id}}">Deletar</a></td> </tr>
+        {% for User in usuarios_banco %}
+        <tr>
+            <td>{{User.id}}</td>
+            <td>{{User.nome}}</td>
+            <td>{{User.password}}</td>
+            <td>{{User.crm}}</td>
+            <td><a href="/delete_medicos/{{User.id}}">Deletar</a></td>
+        </tr>
         {% endfor %}
     </table>
+
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>NOME</th>
+            <th>SEXO</th>
+            <th>DESCRIÇÃO</th>
+            <th>IDADE</th>
+            <th>AÇÕES</th>
+        </tr>
+        {% for paciente in pacientes_banco %}
+        <tr>
+            <td>{{paciente.id}}</td>
+            <td>{{paciente.nome}}</td>
+            <td>{{paciente.sexo}}</td>
+            <td>{{paciente.descricao}}</td>
+            <td>{{paciente.idade}}</td>
+            <td><a href="/delete_pacientes/{{paciente.id}}" onclick="deletar()">Deletar</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js"></script>
-<script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js" href="{{url_for('static', filename='main.js')}}"></script>
 
-    function alerta() {
-        Swal.fire({
-            title: "Tem certeza?",
-            text: "O usuario sera adicionado ao database!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Sim, confirmo!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: "Deleted!",
-                    text: "Your file has been deleted.",
-                    icon: "success"
-                });
-            }
-        });
-    }
-</script>
 
 </html>
