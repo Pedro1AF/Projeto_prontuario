@@ -20,7 +20,7 @@
                 </div>
                 <select name="" id="selctModo" class="selec">
                     <option value="light">Light</option>
-                    <option value="dark">Dark</option>
+                    <option value="dark"><i class="bi bi-moon-stars">Dark</i></option>
                 </select>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
@@ -59,23 +59,25 @@
 
     <div class="content">
         <h1 class="titulo">Pacientes cadastrados</h1>
-        {% for paciente in pacientes_consulta %}
         <table>
         <tr>
-            <td>{{paciente.id}}</td>
-            <td>|</td>
+            <th>NOME</th>
+            <th>IDADE</th>
+            <th>SEXO</th>
+            <th>DESCRIÇÃO</th>
+        </tr>
+        {% for paciente in pacientes_consulta %}
+        
+        <tr>
             <td>{{paciente.nome}}</td>
-            <td>|</td>
             <td>{{paciente.idade}}</td>
-            <td>|</td>
             <td>{{paciente.sexo}}</td>
-            <td>|</td>
             <td>{{paciente.descricao}}</td>
         </tr>
-        </table>
         {%else %}
         <p class="sem-pacientes">Nenhum paciente cadastrado.</p>
         {% endfor %}
+        </table>
         <!--adicionar a possibilidade de saber o horario exato que o paciente foi adicionado-->
     </div>
 

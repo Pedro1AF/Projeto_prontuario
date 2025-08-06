@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html modo-light-dark="light" lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,12 @@
     <title>Gestão</title>
 </head>
 <body>
-
+    <select name="" id="selctModo" class="selec">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
     <h1>Gestão usuarios</h1>
-
+    
     <form action="" method="POST">
         <div class="input-container">
             <label for="nome">NOME</label>
@@ -25,6 +28,7 @@
         </div>
     </form>
 
+        <h1>Usuarios do sistema</h1>
     <table>
         <tr>
             <th>ID</th>
@@ -44,7 +48,7 @@
         {% endfor %}
     </table>
 
-
+    <h1>Pacientes</h1>
     <table>
         <tr>
             <th>ID</th>
@@ -68,7 +72,7 @@
 
 </body>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js" href="{{url_for('static', filename='main.js')}}"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js"></script>
+<script src="static/main.js"></script>
 
 </html>
