@@ -26,6 +26,7 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+                <button class="btn btn-outline-danger" onclick="window.location.href='/logout'">Sair</button>
             </div>
         </nav>
     </header>
@@ -67,7 +68,6 @@
             <th>DESCRIÇÃO</th>
         </tr>
         {% for paciente in pacientes_consulta %}
-        
         <tr>
             <td>{{paciente.nome}}</td>
             <td>{{paciente.idade}}</td>
@@ -75,7 +75,10 @@
             <td>{{paciente.descricao}}</td>
         </tr>
         {%else %}
-        <p class="sem-pacientes">Nenhum paciente cadastrado.</p>
+        <td class="sem-pacientes">Nenhum paciente cadastrado.</td>
+        <td class="sem-pacientes">N</td>
+        <td class="sem-pacientes">N</td>
+        <td class="sem-pacientes">N</td> 
         {% endfor %}
         </table>
         <!--adicionar a possibilidade de saber o horario exato que o paciente foi adicionado-->

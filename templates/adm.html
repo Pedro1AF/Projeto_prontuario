@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename = 'admin.css')}}">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
     <title>Gestão</title>
 </head>
 <body>
@@ -11,6 +15,7 @@
         <option value="light">Light</option>
         <option value="dark">Dark</option>
     </select>
+    <button class="btn btn-outline-danger" onclick="window.location.href='/logout'">Sair</button>
     <h1>Gestão usuarios</h1>
     
     <form action="" method="POST">
@@ -24,7 +29,7 @@
             <label for="senha">SENHA</label>
             <input type="text" name="senha" id="senha" minlength="8" maxlength="30" required>
 
-            <input type="submit" value="Cadastrar" class="continue-btn" onclick="alerta()">
+            <input type="submit" value="Cadastrar" class="continue-btn" onsubmit="alert()">
         </div>
     </form>
 
@@ -43,7 +48,7 @@
             <td>{{User.nome}}</td>
             <td>{{User.password}}</td>
             <td>{{User.crm}}</td>
-            <td><a href="/delete_medicos/{{User.id}}">Deletar</a></td>
+            <td><a href="/delete_medicos/{{User.id}}" onclick="exclu()">Deletar</a></td>
         </tr>
         {% endfor %}
     </table>
